@@ -28,10 +28,14 @@ function performAPIcalls() {
                 temp: temp,
                 content: feeling
             });
+        })
+        .then( () => {
+            updateUI();
         });
 }
 
 // step 2: get & post functions - async
+// get function
 const getWeatherInfo = async (baseURL, zipCode, apiKey) => {
 
     // building the URL
@@ -47,6 +51,7 @@ const getWeatherInfo = async (baseURL, zipCode, apiKey) => {
     }
 };
 
+// post function
 const postData = async (url = '', data ={}) => {
     console.log("retrieved data 'app.js file': " + data);
 
@@ -63,6 +68,20 @@ const postData = async (url = '', data ={}) => {
         const newDataInfo = await res.json();
         console.log("new data info 'app.js': " + newDataInfo);
         return newDataInfo;
+    }
+    catch (e) {
+        console.log("error message: " + e);
+    }
+};
+
+// update the UI
+const updateUI = async () => {
+    const getAllData = await fetch('/all');
+    try {
+        const retrievedData = await getAllData.json()
+        document.getElementById('temp').innerHTML = retrievedData.temp;
+        document.getElementById('content').innerHTML = retrievedData.content;
+        document.getElementById('date').innerHTML = retrievedData.date;
     }
     catch (e) {
         console.log("error message: " + e);
