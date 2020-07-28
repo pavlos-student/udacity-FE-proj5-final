@@ -12,12 +12,23 @@ const apiKey = '&appid=00151dd27784e18e06bbe046aa86243d';
 /* Global Variables - END*/
 
 /*Functions - START*/
+// perform api calls as the end-user clicks on the 'Generate' button
 document.getElementById('generate').addEventListener('click', performAPIcalls);
 
 function performAPIcalls() {
     let zipCode = document.getElementById('zip').value;
+    let feeling = document.getElementById('feelings').value;
 
-    getWeatherInfo(baseURL, zipCode, apiKey);
+    getWeatherInfo(baseURL, zipCode, apiKey)
+        .then( (data) => {
+            console.log("retrieved data: " + data);
+            let temp = data.main.temp;
+            postData('/add', {
+                date: newDate,
+                temp: temp,
+                content: feeling
+            });
+        });
 }
 
 // step 2: get & post functions - async
@@ -33,6 +44,28 @@ const getWeatherInfo = async (baseURL, zipCode, apiKey) => {
     }
     catch (e) {
         console.log("error", e);
+    }
+};
+
+const postData = async (url = '', data ={}) => {
+    console.log("retrieved data 'app.js file': " + data);
+
+    const res = await fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    try {
+        const newDataInfo = await res.json();
+        console.log("new data info 'app.js': " + newDataInfo);
+        return newDataInfo;
+    }
+    catch (e) {
+        console.log("error message: " + e);
     }
 };
 /*Functions - END*/
