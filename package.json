@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pavlos-student/udacity-FE-proj2.git"
+    "url": "https://github.com/pavlos-student/udacity-FE-proj3.git"
   },
   "author": "Boulos ANANIAN",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pavlos-student/udacity-FE-proj2/issues"
+    "url": "https://github.com/pavlos-student/udacity-FE-proj3/issues"
   },
-  "homepage": "https://github.com/pavlos-student/udacity-FE-proj2#readme",
+  "homepage": "https://github.com/pavlos-student/udacity-FE-proj3#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

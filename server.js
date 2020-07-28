@@ -25,3 +25,13 @@ const port = 3000;
 const server = app.listen(port, () => {
     console.log(`The server is running on port ${port}`);
 });
+
+///////////////////////
+// HTTP Routes - START
+//////////////////////
+
+// GET
+app.get('/all', (req, res) => {
+    res.send(projectData);
+    console.log('this response was sent: ' + projectData);
+});
