@@ -1,25 +1,41 @@
 {
-  "name": "weather-journal-app",
+  "name": "travel-app",
   "version": "1.0.0",
-  "description": "FE Udacity Nano-degree 3rd project - WebApI (javascript-node)",
-  "main": "server.js",
+  "description": "FE Udacity Nano-degree 5th and final project",
+  "main": "src/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/server/server.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pavlos-student/udacity-FE-proj3.git"
+    "url": "https://github.com/pavlos-student/udacity-FE-proj5-final.git"
   },
   "author": "Boulos ANANIAN",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pavlos-student/udacity-FE-proj3/issues"
+    "url": "https://github.com/pavlos-student/udacity-FE-proj5-final/issues"
   },
-  "homepage": "https://github.com/pavlos-student/udacity-FE-proj3#readme",
+  "homepage": "https://github.com/pavlos-student/udacity-FE-proj5-final#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.0",
+    "html-webpack-plugin": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack-dev-server": "^3.11.0"
   }
 }
