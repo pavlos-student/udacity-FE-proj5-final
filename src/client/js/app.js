@@ -1,4 +1,4 @@
-
+// export the function so the index.js can import it
 
 
 // /* Global Variables - START*/

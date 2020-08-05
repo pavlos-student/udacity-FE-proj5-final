@@ -22,17 +22,12 @@ app.use(cors());
 app.use(express.static('src/client'));
 // app.use(express.static('dist'))
 
-// TODO: prod (change to 8081)
+// TODO: prod (change to 8000)
 // Setup Server
 const port = 8080;
 const server = app.listen(port, () => {
     console.log(`The server is running on port ${port}`)
 });
-
-// TODO: prod
-// app.use(express.static('dist'))
-app.use(express.static('src/client'))
-
 
 /* HTTP Routes - START */
 
