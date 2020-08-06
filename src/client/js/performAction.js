@@ -11,6 +11,8 @@ const geoNamesURL = 'http://api.geonames.org/searchJSON?q='
 const weatherBitHistoryURL = 'https://api.weatherbit.io/v2.0/history/daily?lat='
 const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat='
 const weatherBitKey = '4b9476c86c264765835350452acd68f0'
+const pixabayURL = 'https://pixabay.com/api/?key='
+const pixabayKey = '17792111-34a6c3c8acad53991e079f486'
 /* Variables' declaration - END*/
 
 // TODO checklist: There should be a primary function that is exported to index.js
@@ -27,23 +29,38 @@ export const handleDataFromAPIs = (event) => {
     details['departureDate'] = document.getElementById('travelDate').value
     details['daysRemaining'] = daysToGo(details['departureDate'])
 
-    handleDataFromGeoNamesAPI(details['destination'])
-        .then( (res) => {
-            const latitude = res.geonames[0].lat
-            const longitude = res.geonames[0].lng
+    try {
+        handleDataFromGeoNamesAPI(details['destination'])
+            .then((res) => {
+                const latitude = res.geonames[0].lat
+                const longitude = res.geonames[0].lng
 
-            return handleDataFromWeatherBitAPI(latitude, longitude, details['departureDate'])
-        })
-        .then( (weatherData) => {
-            // saving the weather details in the details object
-            details['temperature'] = weatherData['data'][0]['temp']
-            details['weather_condition'] = weatherData['data']['0']['weather']['description']
+                return handleDataFromWeatherBitAPI(latitude, longitude, details['departureDate'])
+            })
+            .then((weatherData) => {
+                // saving the weather details in the details object
+                details['temperature'] = weatherData['data'][0]['temp']
+                details['weather_condition'] = weatherData['data']['0']['weather']['description']
 
-            //Call Pixabay API to fetch the first img of the city
-        })
-        // .then( () => {
-        //     updateUI();
-        // });
+                //Call Pixabay API to fetch the first img of the city
+                return handleDataFromPixabayAPI(details['destination'])
+            })
+            .then((imageDetails) => {
+                if (imageDetails['hits'].length > 0) {
+                    details['cityImage'] = imageDetails['hits'][0]['webformatURL'];
+                }
+                // Send all data 'details' object to the server to be store
+                return postData(details);
+            })
+            .then((data) => {
+                console.log("last data: " + data)
+                //Receiving the data from server and updating the UI
+                return updateUI(data);
+            })
+    }
+    catch (e) {
+        console.log('error: ', e);
+    }
 }
 
 // get geo state info
@@ -92,37 +109,44 @@ const handleDataFromWeatherBitAPI = async (lat, lng, travelingDate) => {
     }
 }
 
-// post function
-const postData = async (url = '', data ={}) => {
-    console.log("retrieved data 'app.js file': " + data);
+const handleDataFromPixabayAPI = async (destinationCountry) => {
+    const res = await fetch(pixabayURL + pixabayKey + '&q=' + destinationCountry
+        + ' city&image_type=photo');
+    try {
+        const data = await res.json();
+        return data
+    } catch (e) {
+        console.log('error', e);
+    }
+}
 
-    const res = await fetch(url, {
+// post function
+const postData = async (data) => {
+    const res = await fetch('/postTripData', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    });
+    })
 
     try {
-        const newDataInfo = await res.json();
-        console.log("new data info 'app.js': " + newDataInfo);
-        return newDataInfo;
+        const newDataInfo = await res.json()
+        console.log("new data info: " + newDataInfo)
+        return newDataInfo
     }
     catch (e) {
-        console.log("error message: " + e);
+        console.log("error message: " + e)
     }
 }
 
 // update the UI
-const updateUI = async () => {
-    const getAllData = await fetch('/all');
+const updateUI = async (data) => {
     try {
-        const retrievedData = await getAllData.json()
-        document.getElementById('temp').innerHTML = retrievedData.temp;
-        document.getElementById('content').innerHTML = retrievedData.content;
-        document.getElementById('date').innerHTML = retrievedData.date;
+        document.getElementById('temperature').innerHTML = data.temperature;
+        document.getElementById('departureDate').innerHTML = data.departureDate;
+        document.getElementById('daysRemaining').innerHTML = data.daysRemaining;
     }
     catch (e) {
         console.log("error message: " + e);

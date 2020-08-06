@@ -8,6 +8,11 @@ module.exports = {
     mode: "development",
     devtool: 'source-map',
     stats: 'verbose',
+    devServer: {
+        proxy: {
+            '/': 'http://localhost:8080'
+        }
+    },
     module: {
         rules: [
             {
@@ -31,7 +36,7 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             }
-        ]
+        ],
     },
     plugins: [
         new HtmlWebPackPlugin({
