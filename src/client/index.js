@@ -1,4 +1,3 @@
-import './styles/style.scss';
 // ?? import img from './{file}.png';  // The file-loader resolves import/require() on a file into a url and emits the file into the output directory
                                     // This will emit file.png as a file in the output directory and returns the public URI of the file.
 
