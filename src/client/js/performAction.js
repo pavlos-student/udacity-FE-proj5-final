@@ -144,9 +144,22 @@ const postData = async (data) => {
 // update the UI
 const updateUI = async (data) => {
     try {
-        document.getElementById('temperature').innerHTML = data.temperature;
+        document.getElementById('departure').innerHTML = data.departure;
+        document.getElementById('destination').innerHTML = data.destination;
         document.getElementById('departureDate').innerHTML = data.departureDate;
-        document.getElementById('daysRemaining').innerHTML = data.daysRemaining;
+        document.getElementById('weather_condition').innerHTML = data.weather_condition;
+        document.getElementById('cityImage').innerHTML = data.cityImage;
+
+        if (data.daysRemaining < 0) {
+            document.getElementById('daysRemaining').innerHTML = 'Seems like you have already been to the trip! ' +
+                'or you have put a wrong date';
+        } else {
+            document.getElementById('daysRemaining').innerHTML = data.daysRemaining;
+        }
+        document.getElementById('temperature').innerHTML = data.temperature + '&#8451;';
+        if (data.cityImage !== undefined) {
+            document.getElementById('cityImage').setAttribute('src', data.cityImage);
+        }
     }
     catch (e) {
         console.log("error message: " + e);
@@ -157,8 +170,8 @@ const daysToGo = (departureDate) => {
     const currentDate = new Date()
     const travellingDate = new Date(departureDate)
 
-    const diff = Math.abs(travellingDate - currentDate)
-    const diffInDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    // const diff = Math.abs(travellingDate - currentDate)
+    const diffInDays = Math.ceil((travellingDate - currentDate) / (1000 * 60 * 60 * 24));
 
     return diffInDays;
 }
