@@ -13,7 +13,8 @@
         <section class="main" id="tripDetails">
             <h2>Flight details</h2>
             <p>please fill the form below with your travel details.</p>
-            <form name="travelForm" id="formDetails" action="#" method="post">
+            <form name="travelForm" id="formDetails" action="#" method="post"
+                  onsubmit="btnSubmit.disabled = true; return true;">
                 <div class = "clearfix">
                     <div class="formBox">
                         <label for="departureCountry">
@@ -40,7 +41,7 @@
                         <input type="date" name="departure_dt" id="travelDate" class="tripDate" required/>
                     </div>
                     <div class="col buttons">
-                        <input type="submit" name="btnSubmit" id="submitForm" value="Submit" />
+                        <input type="submit" name="btnSubmit" id="submitForm" value="Submit"/>
                     </div>
                 </div>
             </form>
@@ -89,26 +90,3 @@
     </script>
 </body>
 </html>
-
-
-<!--&lt;!&ndash; Section: Trip Details &ndash;&gt;-->
-<!--<section id="tripDetails">-->
-<!--    <h1>Plan your Trip</h1>-->
-<!--    <form id="formDetails">-->
-<!--        <input type="text" id="departureCountry" placeholder="From" required>-->
-<!--        <input type="text" id="destinationCountry" placeholder="To" required>-->
-<!--        <label for="travelDate">Departure time</label>-->
-<!--        <input type="date" id="travelDate" class="tripDate">-->
-<!--        <input type="submit" id="submitForm">-->
-<!--    </form>-->
-<!--    <div id="entryHolder">-->
-<!--        <div id="departure"></div>-->
-<!--        <div id="destination"></div>-->
-<!--        <div id="temperature"></div>-->
-<!--        <div id="departureDate"></div>-->
-<!--        <div id="weather_condition"></div>-->
-<!--        <div id="daysRemaining"></div>-->
-<!--        <img id="cityImage" alt="destination image">-->
-<!--    </div>-->
-<!--    <button id="removeTrip">Remove</button>-->
-<!--</section>-->

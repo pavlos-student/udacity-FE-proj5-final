@@ -156,8 +156,8 @@ const updateUI = async (data) => {
         document.getElementById('cityImage').innerHTML = data.cityImage;
 
         if (data.daysRemaining < 0) {
-            document.getElementById('daysRemaining').innerHTML = 'Seems like you have already been to the trip! ' +
-                'or you have put a wrong date';
+            document.getElementById('daysRemaining').innerHTML = 'Seems like you have already been to this trip! ' +
+                'Or you have put a wrong date';
         } else {
             document.getElementById('daysRemaining').innerHTML = data.daysRemaining;
         }
