@@ -7,10 +7,12 @@
 </head>
 <body>
     <div id = "app">
-        <section class="trip">
-            <!--TODO: insert img background-->
+
+        <!-- Section: Trip Details -->
+
+        <section id="tripDetails">
             <h1>Plan your Trip</h1>
-            <form class="formDetails">
+            <form id="formDetails">
                 <input type="text" id="departureCountry" placeholder="From" required>
                 <input type="text" id="destinationCountry" placeholder="To" required>
                 <label for="travelDate">Departure time</label>
@@ -26,6 +28,7 @@
                 <div id="daysRemaining"></div>
                 <img id="cityImage" alt="destination image">
             </div>
+            <button id="removeTrip">Remove</button>
         </section>
     </div>
 </body>
