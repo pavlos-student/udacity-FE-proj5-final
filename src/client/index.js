@@ -3,14 +3,14 @@
 
 // ?? import html from './file.html'; // Exports HTML as string. HTML is minimized when the compiler demands.
 
+// TODO checklist: remove - (styles referenced in html/css)
+import './styles/style.scss'
+
 // TODO checklist: remove - At least one function should be imported.
 import {handleDataFromAPIs} from "./js/performAction";
 
 // TODO checklist: remove - At least one event listener should be imported.
 // import event listeners declared in the app.js (the latter will declare the events & expose them)
 import {onFormSubmitPerformAction} from "./js/app";
-
-// TODO checklist: remove - (styles referenced in html/css)
-import './styles/style.scss'
 
 export {handleDataFromAPIs, onFormSubmitPerformAction}

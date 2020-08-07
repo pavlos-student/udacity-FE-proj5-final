@@ -53,7 +53,7 @@ module.exports = {
             protectWebpackAssets: false
         }),
         new WorkboxPlugin.GenerateSW(),
-        new MiniCssExtractPlugin({ filename: "style.scss" })
+        new MiniCssExtractPlugin({ filename: "[name].css" })
     ],
     output: {
         libraryTarget: 'var',

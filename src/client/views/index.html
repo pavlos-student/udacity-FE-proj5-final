@@ -3,33 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Travel App</title>
-    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Flamenco%7cTangerine:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id = "app">
-
-        <!-- Section: Trip Details -->
-
-        <section id="tripDetails">
+    <div class="wrapper">
+        <header class="masthead">
             <h1>Plan your Trip</h1>
-            <form id="formDetails">
-                <input type="text" id="departureCountry" placeholder="From" required>
-                <input type="text" id="destinationCountry" placeholder="To" required>
-                <label for="travelDate">Departure time</label>
-                <input type="date" id="travelDate" class="tripDate">
-                <input type="submit" id="submitForm">
+        </header>
+        <section class="main" id="tripDetails">
+            <h2>Flight details</h2>
+            <p>please fill the form below with your travel details.</p>
+            <form name="travelForm" id="formDetails" action="#" method="post">
+                <div class = "clearfix">
+                    <div class="formBox">
+                        <label for="departureCountry">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
+                                <path d="M3 0c-1.66 0-3 1.34-3 3 0 2 3 5 3 5s3-3 3-5c0-1.66-1.34-3-3-3zm0 1c1.11 0 2 .9 2 2 0 1.11-.89 2-2 2-1.1 0-2-.89-2-2 0-1.1.9-2 2-2z" transform="translate(1)" />
+                            </svg>Departure</label>
+                        <input type="text" name="departure" id="departureCountry" placeholder="departure city" required/>
+                    </div>
+                    <div class="formBox">
+                        <label for="destinationCountry">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
+                                <path d="M3 0c-1.66 0-3 1.34-3 3 0 2 3 5 3 5s3-3 3-5c0-1.66-1.34-3-3-3zm0 1c1.11 0 2 .9 2 2 0 1.11-.89 2-2 2-1.1 0-2-.89-2-2 0-1.1.9-2 2-2z" transform="translate(1)" />
+                            </svg> Destination</label>
+                        <input type="text" name="destination" id="destinationCountry" placeholder="destination city" required/>
+                    </div>
+
+                    <div class="formBox">
+                        <label for="travelDate">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 8 8">
+                                <path d="M0 0v2h7v-2h-7zm0 3v4.91c0 .05.04.09.09.09h6.81c.05 0 .09-.04.09-.09v-4.91h-7zm1 1h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm-4 2h1v1h-1v-1zm2 0h1v1h-1v-1z" />
+                            </svg>
+                            Leave
+                        </label>
+                        <input type="date" name="departure_dt" id="travelDate" class="tripDate" required/>
+                    </div>
+                    <div class="col buttons">
+                        <input type="submit" name="btnSubmit" id="submitForm" value="Submit" />
+                    </div>
+                </div>
             </form>
-            <div id="entryHolder">
-                <div id="departure"></div>
-                <div id="destination"></div>
-                <div id="temperature"></div>
-                <div id="departureDate"></div>
-                <div id="weather_condition"></div>
-                <div id="daysRemaining"></div>
-                <img id="cityImage" alt="destination image">
-            </div>
-                    <button id="removeTrip">Remove</button>
         </section>
+        <!-- Section: Trip Details -->
+        <section class='invisible' id="tripDetailSection">
+            <div id="tripResults">
+                <div id="destPhoto">
+                    <img id="cityImage" alt="destination image">
+                </div>
+                <div id="mainDetails">
+                    <div>You are boarding from:
+                        <span id="departure"></span>
+                    </div>
+                    <div>You are going to:
+                        <span id="destination"></span>
+                    </div>
+                    <div>Departing on:
+                        <span id="departureDate"></span>
+                    </div>
+                    <div>Days to go:
+                        <span id="daysRemaining"></span>
+                    </div>
+                    <div>Expect weather to be
+                        <span id="temperature"> &#8451;</span>
+                        &
+                        <span id="weather_condition"></span></div>
+                    <div>
+                        <input type="reset" name="btnReset" id="removeTrip" value="Delete Trip" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="foot">
+            <p>&copy;Boulos ANANIAN 2020</p>
+        </footer>
     </div>
     <script>
         // Check that service workers are supported
@@ -42,3 +89,26 @@
     </script>
 </body>
 </html>
+
+
+<!--&lt;!&ndash; Section: Trip Details &ndash;&gt;-->
+<!--<section id="tripDetails">-->
+<!--    <h1>Plan your Trip</h1>-->
+<!--    <form id="formDetails">-->
+<!--        <input type="text" id="departureCountry" placeholder="From" required>-->
+<!--        <input type="text" id="destinationCountry" placeholder="To" required>-->
+<!--        <label for="travelDate">Departure time</label>-->
+<!--        <input type="date" id="travelDate" class="tripDate">-->
+<!--        <input type="submit" id="submitForm">-->
+<!--    </form>-->
+<!--    <div id="entryHolder">-->
+<!--        <div id="departure"></div>-->
+<!--        <div id="destination"></div>-->
+<!--        <div id="temperature"></div>-->
+<!--        <div id="departureDate"></div>-->
+<!--        <div id="weather_condition"></div>-->
+<!--        <div id="daysRemaining"></div>-->
+<!--        <img id="cityImage" alt="destination image">-->
+<!--    </div>-->
+<!--    <button id="removeTrip">Remove</button>-->
+<!--</section>-->

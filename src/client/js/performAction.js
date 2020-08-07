@@ -147,7 +147,8 @@ const postData = async (data) => {
 // update the UI
 const updateUI = async (data) => {
     try {
-        document.getElementById('tripDetails').classList.remove('invisible');
+        document.getElementById('tripDetailSection').classList.remove('invisible');
+        document.getElementById('tripDetailSection').scrollIntoView({behavior: "smooth"});
         document.getElementById('departure').innerHTML = data.departure;
         document.getElementById('destination').innerHTML = data.destination;
         document.getElementById('departureDate').innerHTML = data.departureDate;
