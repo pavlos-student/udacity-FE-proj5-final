@@ -6,8 +6,7 @@ const details = {}
 
 // TODO checklist: There should be URLS and API Keys for at least 3 APIs, including Geonames, Weatherbit, and Pixabay.
 
-    // API resources //
-
+// API resources //
 const username = 'pavledis'
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q='
 const weatherBitHistoryURL = 'https://api.weatherbit.io/v2.0/history/daily?lat='
@@ -15,20 +14,9 @@ const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat
 const weatherBitKey = '4b9476c86c264765835350452acd68f0'
 const pixabayURL = 'https://pixabay.com/api/?key='
 const pixabayKey = '17792111-34a6c3c8acad53991e079f486'
-
-const deleteButton = document.querySelector("#removeTrip")
-const form = document.querySelector("#formDetails")
-const result = document.querySelector("#tripDetails")
 /* Variables' declaration - END*/
 
-// delete button
-deleteButton.addEventListener('click',  (e) => {
-    form.reset();
-    result.classList.add("invisible");
-    location.reload();
-})
-
-    // Primary Function //
+// Primary Function //
 
 // TODO checklist: There should be a primary function that is exported to index.js
 // function that handles all the data retrieved from external APIs (imported in app.js)
